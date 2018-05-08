@@ -3,8 +3,8 @@
 PTZOptics Camera Control is a plugin for the OBS (Open broadcaster Software) program.  This plugin allows you to control your PTZOptics camera via VISCA commands utilizing TCP.
 
 ### Prerequisites
-OBS Studio
-This plugin is for 64bit based Windows
+. OBS Studio  
+. This plugin is for 64bit based Windows  
 
 ### Installing
 
