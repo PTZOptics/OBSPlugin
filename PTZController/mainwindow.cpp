@@ -710,7 +710,7 @@ void MainWindow::onMem4Clicked()
             bool ok;
             QString presetText = QInputDialog::getText(nullptr, tr("PTZOptics"),
                                                      tr("Preset #4 Name:"), QLineEdit::Normal,
-                                                    ui->mem1->text(), &ok);
+                                                    ui->mem4->text(), &ok);
             if (!ok || presetText.isEmpty())
                 presetText = ui->mem4->text();
             ui->mem4->setText(presetText);
