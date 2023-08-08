@@ -1,0 +1,26 @@
+git clone --recurse-submodules https://github.com/obsproject/obs-studio.git
+put plugin in plugins/ptzobs
+add line "add_subdirectory(ptzobs)" to plugins/CMakeLists.txt
+
+brew install cmake ffmpeg luajit swig speexdsp
+install "qt 6.2.4 mac" from qt.io
+
+git clone https://github.com/aja-video/ntv2.git
+cmake -B . -S ~/Source/ntv2
+cmake --build . -j 6
+sudo cmake --install .
+
+cd ./obs-studio-build
+cmake -B . -S ./../obs-studio -D CMAKE_PREFIX_PATH=/Users/sky/Qt/6.3.2/macos -D ENABLE_SCRIPTING=OFF -Wno-deprecated -Wno-dev --log-level=ERROR
+# Need to solve unknown warning option '-Wno-format-truncation', just need to remove that option in obi-studio/deps/jansson/CMakeList.txt
+cmake --build . -j 6
+cmake --install .
+
+copy install/OBS.app/Contents/Frameworks/libsdl...lib to installers-src/mac/OBS.app/Contents/Frameworks/libsdl...lib
+copy install/OBS.app/Contents/PlugIns/obs-ptzcontroller.plugin to installers-src/mac/OBS.app/Contents/PlugIns/obs-ptzcontroller.plugin
+
+build xcode project
+
+put installer app in empty ptz-mac-installer folder
+hdiutil create -srcfolder ptz-mac-installer -ov -format UDZO ptz-mac-installer.dmg
+

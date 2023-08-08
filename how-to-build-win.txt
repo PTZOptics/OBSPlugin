@@ -1,0 +1,20 @@
+copy src to obs-studio\plugins\ptzoptics-obs folder in obs-studio source
+in obs-studio\plugins\CMakeLists.txt add "add_subdirectory(ptzoptics-obs)" at the end
+
+C:\<path>\deps is from https://github.com/obsproject/obs-deps/releases?q=windows
+C:\<path>\SDL2-devel-2.24.1-VC\SDL2-2.24.1 is from https://github.com/libsdl-org/SDL/releases
+
+C:\Qt\Tools\CMake_64\bin\cmake -D CMAKE_PREFIX_PATH=C:\<path>\deps;C:\Qt\6.2.4\msvc2019_64 -D SDL2_DIR=C:\<path>\SDL2-devel-2.24.1-VC\SDL2-2.24.1\cmake  -B .\build -S .\obs-studio
+
+Open in Visual Studio,
+set in obs-ptzcontroller's project settings "Treat Warnings as Errors" = "NO"
+
+copy SDL2-devel-2.24.1-VC\SDL2-2.24.1\lib\x64\sdl2.dll to rundir\Release\obs-plugins\64bit
+
+copy obs-ptzcontroller.dll and sdl2.dll into installers-src/win/PtzObsPluginInstaller
+
+build installer project in Visual Studio
+
+
+
+

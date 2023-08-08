@@ -1,0 +1,13 @@
+--- original_CMakeLists.txt
++++ patched_CMakeLists.txt
+@@ -76,6 +76,10 @@
+   add_subdirectory(obs-webrtc)
+   check_obs_websocket()
+   add_subdirectory(obs-x264)
++  if(OS_WINDOWS
++     OR OS_MACOS)
++    add_subdirectory(ptzoptics-obs)
++  endif()
+   add_subdirectory(rtmp-services)
+   if(OS_LINUX)
+     add_subdirectory(sndio)
