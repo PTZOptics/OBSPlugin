@@ -20,4 +20,4 @@ jobs:
     - uses: actions/upload-artifact@v3
       with:
         name: PtzOpticsOBSPlugin_x86_64
-        path: ../PtzOpticsOBSPlugin_x86_64.pkg
+        path: PtzOpticsOBSPlugin_x86_64.pkg
