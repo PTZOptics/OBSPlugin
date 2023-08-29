@@ -9,9 +9,9 @@ jobs:
     steps:   
     - uses: actions/checkout@v3
     - name: Build installer
-      run: OBSPlugin\gh_actions\windows.cmd
+      run: gh_actions\windows.cmd
       shell: cmd      
     - uses: actions/upload-artifact@v3
       with:
         name: PtzObsPluginInstaller-win-x64
-        path: OBSPlugin\installers-src\win\x64\Release\PtzObsPluginInstaller.exe
+        path: installers-src\win\x64\Release\PtzObsPluginInstaller.exe
