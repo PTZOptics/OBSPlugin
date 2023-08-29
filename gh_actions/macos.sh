@@ -19,7 +19,9 @@ KEYCHAIN_PATH=$RUNNER_TEMP/app-signing.keychain-db
 
 # import certificate from secrets
 echo -n "$CODESIGN_CERTIFICATE_BASE64" | base64 --decode -o $CODESIGN_CERTIFICATE_PATH
+CODESIGN_IDENTITY=`openssl pkcs12 -in  $CODESIGN_CERTIFICATE_PATH  -nodes -passin env:CODESIGN_P12_PASSWORD | openssl x509 -noout -subject -nameopt multiline | grep commonName | awk '{ print $3 }'`
 echo -n "$SIGN_INSTALLER_CERTIFICATE_BASE64" | base64 --decode -o $SIGN_INSTALLER_CERTIFICATE_PATH
+SIGN_INSTALLER_IDENTITY=`openssl pkcs12 -in  $SIGN_INSTALLER_CERTIFICATE_PATH  -nodes -passin env:SIGN_INSTALLER_P12_PASSWORD  | openssl x509 -noout -subject -nameopt multiline | grep commonName | awk '{ print $3 }'`
 
 # create temporary keychain
 security create-keychain -p "$TEMP_KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
@@ -29,7 +31,6 @@ security unlock-keychain -p "$TEMP_KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
 # import certificate to keychain
 security import $CODESIGN_CERTIFICATE_PATH -P "$CODESIGN_P12_PASSWORD" -A -t cert -f pkcs12 -k $KEYCHAIN_PATH
 security import $SIGN_INSTALLER_CERTIFICATE_PATH -P "$SIGN_INSTALLER_P12_PASSWORD" -A -t cert -f pkcs12 -k $KEYCHAIN_PATH
-
 
 security list-keychains -d user -s $KEYCHAIN_PATH
 
