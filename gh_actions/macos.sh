@@ -47,6 +47,6 @@ pkgbuild --root . \
          --scripts ../../../../../../OBSPlugin/installers-src/mac-v2/scripts \
          --identifier PtzOpticsOBSPlugin \
          --version 1.0.0 \
-         --timestamp --sign "$SIGN_INSTALLER_IDENTITY" ../../../../../../PtzOpticsOBSPlugin_x86_64.pkg
+         --timestamp --sign "$SIGN_INSTALLER_IDENTITY" ../../../../../../OBSPlugin/PtzOpticsOBSPlugin_x86_64.pkg
 
 security delete-keychain $KEYCHAIN_PATH
