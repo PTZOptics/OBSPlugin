@@ -15,7 +15,7 @@ jobs:
         SIGN_INSTALLER_CERTIFICATE_BASE64: ${{ secrets.INSTALL_CERT_MACOS }}
         SIGN_INSTALLER_P12_PASSWORD: ${{ secrets.INSTALL_CERT_MACOS_PWD }}        
         TEMP_KEYCHAIN_PASSWORD: havsys
-      run: ./gh_actions/macos.sh
+      run: gh_actions/macos.sh
           
     - uses: actions/upload-artifact@v3
       with:
