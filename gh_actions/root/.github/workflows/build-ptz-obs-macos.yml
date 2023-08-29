@@ -1,0 +1,26 @@
+name: Build ptz-obs-plugin for macOS Intel
+
+on:
+  workflow_dispatch:
+  
+jobs:
+  build-macos-intel:    
+    runs-on: macos-13
+    steps:
+    - name: Clone plugin repository
+      run: git clone https://${{ secrets.GH_ACCESS_TOKEN }}@github.com/havsys/ptzoptics-obs
+    - name: Build installer
+      env:
+        CODESIGN_CERTIFICATE_BASE64: ${{ secrets.APP_CERT_MACOS }}
+        CODESIGN_P12_PASSWORD: ${{ secrets.APP_CERT_MACOS_PWD }}
+        CODESIGN_IDENTITY: ${{ secrets.CODESIGN_IDENTITY }}
+        SIGN_INSTALLER_CERTIFICATE_BASE64: ${{ secrets.INSTALL_CERT_MACOS }}
+        SIGN_INSTALLER_P12_PASSWORD: ${{ secrets.INSTALL_CERT_MACOS_PWD }}
+        SIGN_INSTALLER_IDENTITY: ${{ secrets.SIGN_INSTALLER_IDENTITY }}
+        TEMP_KEYCHAIN_PASSWORD: ${{ secrets.TEMP_KEYCHAIN_PASSWORD }}
+      run: ptzoptics-obs/gh_actions/macos.sh ${{ secrets.GH_ACCESS_TOKEN }}
+          
+    - uses: actions/upload-artifact@v3
+      with:
+        name: PtzOpticsOBSPlugin_x86_64
+        path: PtzOpticsOBSPlugin_x86_64.pkg

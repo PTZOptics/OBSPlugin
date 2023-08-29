@@ -1,6 +1,6 @@
 # CMakeList.txt : CMake project for PTZController
-cmake_minimum_required (VERSION 3.8)
-legacy_check()
+cmake_minimum_required(VERSION 3.16...3.25)
+
 project(obs-ptzcontroller)
 
 set(CMAKE_PREFIX_PATH "${QTDIR}")
@@ -53,13 +53,18 @@ set(ptzcontroller_HEADERS
 	SDL_Joysticks.h
 	VirtualJoystick.h
 	)
-	
-set(CMAKE_COMPILE_WARNING_AS_ERROR OFF)
+
 add_library(obs-ptzcontroller MODULE
 	${ptzcontroller_SOURCES}
 	${ptzcontroller_HEADERS}
 	ptzqrc.qrc
 	)
+
+if (WIN32)
+    target_compile_options(obs-ptzcontroller PUBLIC "/WX-")
+else()
+    target_compile_options(obs-ptzcontroller PUBLIC "-w")
+endif()
 
 find_package(SDL2 REQUIRED)
 	
@@ -82,10 +87,5 @@ target_link_libraries(obs-ptzcontroller
 	Qt6::Widgets
 	)
 
-#target_compile_options(obs-ptzcontroller PUBLIC /WX-)
-
-# cmake-format: off
-set_target_properties_obs(obs-ptzcontroller PROPERTIES FOLDER plugins PREFIX "")
-# cmake-format: on
-
+setup_plugin_target(obs-ptzcontroller)
 

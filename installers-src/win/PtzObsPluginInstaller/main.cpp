@@ -3,27 +3,28 @@
 #include "resource.h"
 #include "ResourceFile.h"
 #include <fstream>
+#include <Shlobj.h>
 
 std::wstring GetObsStudioInstallLocation()
 {
 	HKEY obsStudioKey;
 	if (RegOpenKey(HKEY_LOCAL_MACHINE, L"SOFTWARE\\WOW6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\OBS Studio", &obsStudioKey) != ERROR_SUCCESS)
-		throw std::exception();
+		throw std::exception("OBS Studio registry key is not found");
 
 	TCHAR value[2560];
 	DWORD valueSize = sizeof(value);
 	if (RegQueryValueEx(obsStudioKey, L"UninstallString", NULL, NULL, (LPBYTE)value, &valueSize) != ERROR_SUCCESS)
-		throw std::exception();
+		throw std::exception("UninstallString is not found");
+	if (RegCloseKey(obsStudioKey) != ERROR_SUCCESS)
+		throw std::exception("Can't close registry key");
+
 	std::wstring uninstallStr(value);
+	if (uninstallStr[0] == '"')
+		uninstallStr = uninstallStr.substr(1);
 	size_t lastSlashPos = uninstallStr.find_last_of('\\');
 	if (lastSlashPos == std::wstring::npos)
-		throw std::exception();
-	return uninstallStr.substr(0, lastSlashPos);
-
-
-	if (RegCloseKey(obsStudioKey) != ERROR_SUCCESS)
-		throw std::exception();
-
+		throw std::exception("UninstallString doesn't have '\\' symbol");
+	return uninstallStr.substr(0, lastSlashPos);	
 }
 
 struct ResFile
@@ -53,25 +54,46 @@ void CopyFiles(std::wstring folder)
 		if (state & filestream.failbit)
 		{
 			filestream.close();
-			throw std::exception();
+
+			int sz = WideCharToMultiByte(CP_ACP, 0, path.c_str(), -1, NULL, 0, NULL, NULL);
+			char* path_c = new char[sz];
+			WideCharToMultiByte(CP_ACP, 0, path.c_str(), -1, path_c, sz, NULL, NULL);
+			std::string path_c_s(path_c);
+			delete[] path_c;
+			throw std::exception(("Error writing '" + path_c_s + "'").c_str());
 		}
 		
 		filestream.close();
 	}
 }
 
-bool Install()
+void Log(std::string str)
 {
+	char path[MAX_PATH + 1];
+	if (SHGetFolderPathA(NULL, CSIDL_LOCAL_APPDATA, NULL, SHGFP_TYPE_CURRENT, path) != S_OK) return;
+	std::string folder(path);
+	folder += "\\PtzOpticsObsInstaller";
+	CreateDirectoryA(folder.c_str(), NULL);
+	std::ofstream log_file((folder + "\\log.txt").c_str());
+
+	log_file << str;
+	log_file.close();
+}
+
+bool Install()
+{	
 	try
 	{		
 		std::wstring folder = GetObsStudioInstallLocation();
 		CopyFiles(folder);
 	}
-	catch (...)
+	catch (std::exception ex)
 	{
+		Log(ex.what());
 		return false;
 	}
 
+	Log("Successfully installed");
     return true;
 }
 

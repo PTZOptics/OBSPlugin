@@ -1,0 +1,26 @@
+#!/bin/sh
+
+#  script.sh
+#  
+## Get the user
+MyUser=$( /usr/bin/stat -f "%Su" /dev/console )
+
+## Heavy lifting
+
+if [ ! -d "/Users/$MyUser/Library/Application Support/obs-studio/plugins" ]; then
+  mkdir -p "/Users/$MyUser/Library/Application Support/obs-studio/plugins"
+fi
+
+if [ -d "/Users/$MyUser/Library/Application Support/obs-studio/plugins/obs-ptzcontroller.plugin" ]; then
+  rm -rf "/Users/$MyUser/Library/Application Support/obs-studio/plugins/obs-ptzcontroller.plugin"
+fi
+
+mv /tmp/obs-ptzcontroller.plugin "/Users/$MyUser/Library/Application Support/obs-studio/plugins"
+
+## Give it to the user
+chown -R $MyUser:$MyUser "/Users/$MyUser/Library/Application Support/obs-studio/plugins/obs-ptzcontroller.plugin"
+
+## Confirm it's set right
+chmod 755 "/Users/$MyUser/Library/Application Support/obs-studio/plugins/obs-ptzcontroller.plugin"
+
+exit 0
