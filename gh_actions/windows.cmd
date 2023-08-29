@@ -1,3 +1,4 @@
+cd ..
 choco install wget -y
 choco install patch -y
 wget https://github.com/libsdl-org/SDL/releases/download/release-2.28.2/SDL2-devel-2.28.2-VC.zip
