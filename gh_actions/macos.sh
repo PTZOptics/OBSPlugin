@@ -1,8 +1,9 @@
+cd ..
 brew install sdl2
-git clone -b release/29.1 --recursive https://$1@github.com/obsproject/obs-studio.git
-mv ptzoptics-obs/src obs-studio/plugins/ptzoptics-obs
-patch --ignore-whitespace obs-studio/plugins/CMakeLists.txt ptzoptics-obs/obs_plugins_cmakelists.patch
-patch --ignore-whitespace obs-studio/plugins/ptzoptics-obs/PTZController/CMakeLists.txt ptzoptics-obs/macos_cmakelists.patch
+git clone -b release/29.1 --recursive https://github.com/obsproject/obs-studio.git
+mv OBSPlugin/src obs-studio/plugins/ptzoptics-obs
+patch --ignore-whitespace obs-studio/plugins/CMakeLists.txt OBSPlugin/obs_plugins_cmakelists.patch
+patch --ignore-whitespace obs-studio/plugins/ptzoptics-obs/PTZController/CMakeLists.txt OBSPlugin/macos_cmakelists.patch
 cd obs-studio
 CI/build-macos.sh
 cd ./build_x86_64/plugins/ptzoptics-obs/PTZController/obs-ptzcontroller.plugin/Contents
