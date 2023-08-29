@@ -44,7 +44,7 @@ mv ./obs-ptzcontroller ./obs-ptzcontroller.plugin/Contents/MacOS/
 cd obs-ptzcontroller.plugin
 pkgbuild --root . \
          --install-location /tmp/obs-ptzcontroller.plugin \
-         --scripts ../../../../../../ptzoptics-obs/installers-src/mac-v2/scripts \
+         --scripts ../../../../../../OBSPlugin/installers-src/mac-v2/scripts \
          --identifier PtzOpticsOBSPlugin \
          --version 1.0.0 \
          --timestamp --sign "$SIGN_INSTALLER_IDENTITY" ../../../../../../PtzOpticsOBSPlugin_x86_64.pkg
