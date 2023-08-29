@@ -7,13 +7,11 @@ jobs:
   build-windows:    
     runs-on: windows-2022
     steps:   
-    - name: Clone plugin repository
-      run: git clone https://${{ secrets.GH_ACCESS_TOKEN }}@github.com/havsys/ptzoptics-obs
-      shell: cmd  
+    - uses: actions/checkout@v3
     - name: Build installer
-      run: ptzoptics-obs\gh_actions\windows.cmd ${{ secrets.GH_ACCESS_TOKEN }}
+      run: OBSPlugin\gh_actions\windows.cmd
       shell: cmd      
     - uses: actions/upload-artifact@v3
       with:
         name: PtzObsPluginInstaller-win-x64
-        path: ptzoptics-obs\installers-src\win\x64\Release\PtzObsPluginInstaller.exe
+        path: OBSPlugin\installers-src\win\x64\Release\PtzObsPluginInstaller.exe
