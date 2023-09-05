@@ -19,13 +19,13 @@ jobs:
     - name: "Notarize Release Build"
       uses: GuillaumeFalourd/xcode-notarize@v1
       with:
-        product-path: "PtzOpticsOBSPlugin_x86_64.pkg" # or .pkg or .dmg
+        product-path: PtzOpticsOBSPlugin_x86_64.pkg # or .pkg or .dmg
         appstore-connect-username: ${{ secrets.NOTARIZATION_USERNAME }}
         appstore-connect-password: ${{ secrets.NOTARIZATION_PASSWORD }}
     - name: "Staple Release Build"
       uses: BoundfoxStudios/action-xcode-staple@v1
       with:
-        product-path: "PtzOpticsOBSPlugin_x86_64.pkg"
+        product-path: PtzOpticsOBSPlugin_x86_64.pkg
     - uses: actions/upload-artifact@v3
       with:
         name: PtzOpticsOBSPlugin_x86_64
