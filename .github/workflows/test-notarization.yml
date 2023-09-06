@@ -1,0 +1,14 @@
+name: Test notarization
+
+on:
+  workflow_dispatch:
+  
+jobs:
+  build-macos-intel:    
+    runs-on: macos-13
+    steps:
+    - uses: actions/checkout@v3
+    - name: Submit PKG for notarization
+      run: xcrun notarytool submit gh_actions/PtzOpticsOBSPlugin_x86_64.pkg --wait --apple-id ${{ secrets.NOTARIZATION_USERNAME }} --password ${{ secrets.NOTARIZATION_PASSWORD }}
+
+    
