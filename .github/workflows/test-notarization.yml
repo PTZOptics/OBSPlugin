@@ -8,8 +8,6 @@ jobs:
     runs-on: macos-13
     steps:
     - uses: actions/checkout@v3
-
-    - name: Check log
-      run: xcrun notarytool log 0f7a5ba1-61a1-4ddd-aec7-5381b87ac714 --apple-id ${{ secrets.NOTARIZATION_USERNAME }} --password ${{ secrets.NOTARIZATION_PASSWORD }} --team-id 32VFWEFED4
-
+    - name: Submit PKG for notarization
+      run: xcrun notarytool submit gh_actions/PtzOpticsOBSPlugin_x86_64.pkg --wait --apple-id ${{ secrets.NOTARIZATION_USERNAME }} --password ${{ secrets.NOTARIZATION_PASSWORD }} --team-id 32VFWEFED4
     
