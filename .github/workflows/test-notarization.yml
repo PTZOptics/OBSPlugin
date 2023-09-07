@@ -8,10 +8,9 @@ jobs:
     runs-on: macos-13
     steps:
     - uses: actions/checkout@v3
-    - name: Notarize Release Build
-      uses: BoundfoxStudios/action-xcode-notarize@v1
-      with:
-        product-path:  gh_actions/PtzOpticsOBSPlugin_x86_64.pkg
-        appstore-connect-username: ${{ secrets.NOTARIZATION_USERNAME }}
-        appstore-connect-password: ${{ secrets.NOTARIZATION_PASSWORD }}
+    - name: Submit PKG for notarization
+      run: xcrun notarytool submit gh_actions/PtzOpticsOBSPlugin_x86_64.pkg --wait --apple-id ${{ secrets.NOTARIZATION_USERNAME }} --password ${{ secrets.NOTARIZATION_PASSWORD }} --team-id 32VFWEFED4
+    - name: Staple PKG
+      run: xcrun stapler staple gh_actions/PtzOpticsOBSPlugin_x86_64.pkg
         
+
