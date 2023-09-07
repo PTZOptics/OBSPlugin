@@ -36,10 +36,12 @@ security import $SIGN_INSTALLER_CERTIFICATE_PATH -P "$SIGN_INSTALLER_P12_PASSWOR
 security list-keychains -d user -s $KEYCHAIN_PATH
 
 cd ../../..
-mv obs-ptzcontroller.plugin/Contents/MacOS/obs-ptzcontroller .
+mv obs-ptzcontroller.plugin/Contents/Frameworks/libSDL2-2.0.0.dylib .
 
-codesign --force --timestamp --options=runtime -s "$CODESIGN_IDENTITY"  -v ./obs-ptzcontroller
-mv ./obs-ptzcontroller ./obs-ptzcontroller.plugin/Contents/MacOS/
+codesign --force --timestamp --options=runtime -s "$CODESIGN_IDENTITY"  -v ./libSDL2-2.0.0.dylib
+mv ./libSDL2-2.0.0.dylib ./obs-ptzcontroller.plugin/Contents/Frameworks/
+
+codesign --force --timestamp --options=runtime -s "$CODESIGN_IDENTITY"  -v ./obs-ptzcontroller.plugin
 
 cd obs-ptzcontroller.plugin
 pkgbuild --root . \
