@@ -1,4 +1,4 @@
-@@ -185,3 +185,4 @@ add_subdirectory(rtmp-services)
+@@ -185,3 +185,5 @@ add_subdirectory(rtmp-services)
  add_subdirectory(text-freetype2)
  add_subdirectory(aja)
  add_subdirectory(obs-webrtc)
