@@ -3,4 +3,3 @@
  add_subdirectory(aja)
  add_subdirectory(obs-webrtc)
 +add_subdirectory(ptz-optics)
-\ No newline at end of file
