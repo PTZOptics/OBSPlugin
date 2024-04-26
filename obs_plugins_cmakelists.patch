@@ -1,5 +1,9 @@
-@@ -168,3 +168,4 @@ add_subdirectory(rtmp-services)
+@@ -184,4 +184,5 @@ add_subdirectory(obs-transitions)
+ add_subdirectory(rtmp-services)
  add_subdirectory(text-freetype2)
  add_subdirectory(aja)
- add_subdirectory(obs-webrtc)
-+add_subdirectory(ptzoptics-obs)
+-add_subdirectory(obs-webrtc)
+\ No newline at end of file
++add_subdirectory(obs-webrtc)
++add_subdirectory(ptz-optics)
+\ No newline at end of file
