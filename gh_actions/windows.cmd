@@ -8,6 +8,8 @@ move OBSPlugin\src obs-studio\plugins\ptzoptics-obs
 patch --ignore-whitespace obs-studio\plugins\CMakeLists.txt OBSPlugin\obs_plugins_cmakelists.patch || exit /b 1
 set SDL2_DIR=%cd%\SDL2-2.28.2
 cd obs-studio
+cmake --list-presets
+cmake --preset windows-x64
 md build_x64
 cmake --build --preset windows-x64
 cd ..
