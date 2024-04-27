@@ -1,5 +1,5 @@
-@@ -184,4 +184,5 @@ add_subdirectory(rtmp-services)
+@@ -185,3 +185,4 @@
  add_subdirectory(text-freetype2)
  add_subdirectory(aja)
  add_subdirectory(obs-webrtc)
-+add_subdirectory(ptz-optics)
++add_subdirectory(ptzoptics-obs)
