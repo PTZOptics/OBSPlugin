@@ -10,7 +10,6 @@ set SDL2_DIR=%cd%\SDL2-2.28.2
 cd obs-studio
 cmake --list-presets
 cmake --preset windows-x64
-md build_x64
 cmake --build --preset windows-x64
 cd ..
 copy /Y obs-studio\build_x64\rundir\RelWithDebInfo\obs-plugins\64bit\obs-ptzcontroller.dll OBSPlugin\installers-src\win\PtzObsPluginInstaller\ || exit /b 1
