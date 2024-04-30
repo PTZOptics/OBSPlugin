@@ -1,5 +1,4 @@
-@@ -185,3 +185,4 @@
+@@ -192,2 +192,3 @@
  add_subdirectory(text-freetype2)
  add_subdirectory(aja)
- add_subdirectory(obs-webrtc)
 +add_subdirectory(ptzoptics-obs)
