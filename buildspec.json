@@ -37,7 +37,7 @@
         }
     },
     "name": "obs-ptzcontroller",
-    "displayName": "PTZOptics Camera Controller OBS plugin",
+    "displayName": "OBS plugin for PTZOptics Camera Control",
     "version": "1.0.0",
     "author": "Hun Gala",
     "website": "https://ptzoptics.com",
