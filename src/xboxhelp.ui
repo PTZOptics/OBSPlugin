@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>XBoxHelp</class>
+ <widget class="QDialog" name="XBoxHelp">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>618</width>
+    <height>738</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>618</width>
+    <height>738</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Xbox Help</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QToolTip{
+	color : black;
+}
+QDialog{
+	background : #333333;
+}
+QGroupBox{
+	color : white;
+	margin-top : 2ex;
+	border-radius : 5px;
+	padding : 8px;
+	padding-top : 13px;
+	 border-style: outset;
+ 	 border-width: 2px;
+	 border-color: #1f1f1f;
+}
+QMenuBar#menuBar{
+
+	background : grey;
+	color : white;
+	 border-bottom-style: outset;
+ 	 border-bottom-width: 1px;
+	 border-bottom-color: #222222;
+}
+QMenu{
+	background : grey;
+	color : #1f1f1f;
+}
+QMenu::item:selected{
+	background : #c9c9c9;
+}
+QStatusBar#statusBar{
+	background : grey;
+	color : white;
+	border-top-style: outset;
+ 	border-top-width: 1px;
+	border-top-color: #222222;
+}
+QPushButton{
+	color : white;
+	background : grey;
+	padding : 5px;
+	border-radius : 3px;
+}
+QPushButton:pressed{
+	background : #474747;
+}
+QPushButton:hover{
+	background : #c9c9c9;
+}
+QPushButton:disabled{
+	color : #474747;
+}
+QLineEdit{
+	color : white;
+	background : #111111;
+	padding : 3px;
+	border-radius : 3px;
+	border-color : white;
+	border-width : 1px;
+}
+QComboBox{
+	color : white;
+	background : #111111;
+	padding : 3px;
+	min-width : 40px;
+	border-radius : 3px;
+
+}
+QComboBox::drop-down{
+	
+}
+QComboBox QAbstractItemView{
+	background-color : black;
+	color : white;
+}
+QSlider::handle{
+	background : grey;
+}
+QSlider::handle:hover{
+	background : #c9c9c9;
+}
+QSlider::handle:pressed{
+	background : #474747;
+}
+QLabel{
+	color : white;
+}</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QLabel" name="label">
+     <property name="styleSheet">
+      <string notr="true">QLabel{
+image: url(:/ptzoptics-assets/img/xbox.png);
+}</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
