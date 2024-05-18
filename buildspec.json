@@ -33,16 +33,18 @@
     },
     "platformConfig": {
         "macos": {
-            "bundleId": "com.example.obs-plugintemplate"
+            "bundleId": "com.ptzoptics.obs-ptzcontroller"
         }
     },
-    "name": "obs-plugintemplate",
-    "displayName": "OBS Plugin Template",
+    "name": "obs-ptzcontroller",
+    "displayName": "OBS plugin for PTZOptics Camera Control",
     "version": "1.0.0",
-    "author": "Your Name Here",
-    "website": "https://example.com",
-    "email": "me@example.com",
+    "author": "Hun Gala",
+    "website": "https://ptzoptics.com",
+    "email": "sky19938470@gmail.com",
     "uuids": {
-        "windowsApp": "00000000-0000-0000-0000-000000000000"
+        "windowsApp": "7e643f13-fcc1-4e52-936f-ab9cea84ec8c",
+        "macosPackage": "61ca0b2d-1a9b-421e-ad02-ec6322f6957c",
+        "macosInstaller": "797624aa-54db-4b88-b18f-490f221837d3"
     }
 }
