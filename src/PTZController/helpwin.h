@@ -1,6 +1,8 @@
 #ifndef HELPWIN_H
 #define HELPWIN_H
 
+#pragma once
+
 #include <QDialog>
 
 namespace Ui {

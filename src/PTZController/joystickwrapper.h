@@ -2,7 +2,7 @@
 #define JOYSTICKWRAPPER_H
 
 #include <QObject>
-#include <QJoysticks.h>
+#include "QJoysticks.h"
 #include <QSettings>
 #define BTN_START 6//9
 #define BTN_BACK 4//8

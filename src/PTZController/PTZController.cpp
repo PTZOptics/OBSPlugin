@@ -1,7 +1,3 @@
-// PTZController.cpp : Defines the entry point for the application.
-//
-
-
 #include <QMainWindow>
 #include <QAction>
 #include <QMessageBox>
@@ -9,18 +5,17 @@
 #include "PTZController.h"
 #include "mainwindow.h"
 
-
 OBS_DECLARE_MODULE()
-OBS_MODULE_USE_DEFAULT_LOCALE("obs-ptzcontroller", "en-US")
+OBS_MODULE_USE_DEFAULT_LOCALE(PLUGIN_NAME, "en-US")
+
+#define PLUGIN_VERSION "2.15"
 
 MainWindow *ptzMainWindow;
 
 bool obs_module_load(void)
 {
 
-	//QMessageBox msgBox;
-	//msgBox.setText("Loading...");
-	//msgBox.exec();
+
 	QMainWindow* main_window = (QMainWindow*)obs_frontend_get_main_window();
 	QAction *action = (QAction*)obs_frontend_add_tools_menu_qaction(
 		obs_module_text("PTZOptics Camera Controller"));
@@ -38,6 +33,9 @@ bool obs_module_load(void)
 
 	obs_frontend_add_preload_callback(registerPTZHotkeys, NULL);
 	obs_frontend_add_save_callback(savePTZHotkeys, NULL);
+
+	obs_log(LOG_INFO, "plugin loaded successfully (version %s)",
+	PLUGIN_VERSION);
 	
 	return true;
 }
@@ -213,5 +211,6 @@ void ptzHotkeyCallback(void *data, obs_hotkey_id id, obs_hotkey_t *hotkey, bool 
 
 void obs_module_unload(void)
 {
+	obs_log(LOG_INFO, "plugin unloaded");
 }
 
